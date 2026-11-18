@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#070605" />
+    <meta name="description" content="将进酒 · 醉界 —— 一杯一杯，把盛唐的夜宴喝成一个颠倒的梦。" />
+    <title>将进酒 · 醉界</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23070605'/%3E%3Cpath d='M20 22h24l-3 16c-1 6-5 9-9 9s-8-3-9-9z' fill='none' stroke='%23c9a15c' stroke-width='2.5'/%3E%3Cpath d='M17 47h30' stroke='%23c9a15c' stroke-width='2.5'/%3E%3Cpath d='M26 14c0 3-3 3-3 6M32 13c0 3-3 3-3 6M38 14c0 3-3 3-3 6' fill='none' stroke='%23a23428' stroke-width='2'/%3E%3C/svg%3E" />
+    <script type="module" crossorigin src="./assets/index-D9BRWtgM.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BPFxzYTN.css">
+  </head>
+  <body>
+    <div id="scene" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div id="flash" aria-hidden="true"></div>
+    <div id="blackout" aria-hidden="true"></div>
+
+    <header class="brand">
+      <span class="brand-mark">将进酒</span>
+      <span class="brand-dot">·</span>
+      <span class="brand-sub">醉界</span>
+    </header>
+
+    <div class="top-right">
+      <button id="soundBtn" class="icon-btn" aria-label="声音开关" title="声音开关">
+        <span id="soundIcon">声</span>
+      </button>
+      <button id="shareBtn" class="icon-btn" aria-label="分享" title="分享此夜">享</button>
+    </div>
+
+    <div id="hud" class="hud">
+      <div id="poem" class="poem" aria-live="polite"></div>
+
+      <div id="caption" class="caption">
+        <div class="cap-rule"></div>
+        <div id="capNo" class="cap-no">第一杯</div>
+        <div id="capMain" class="cap-main"></div>
+        <div id="capSub" class="cap-sub"></div>
+      </div>
+
+      <div id="challenge" class="challenge">
+        <div class="ch-head">
+          <span>接住坠落的金樽</span>
+          <b><i id="chDone">0</i>/3</b>
+        </div>
+        <div class="ch-pips"><i></i><i></i><i></i></div>
+        <div class="ch-time"><i id="chBar"></i></div>
+      </div>
+
+      <div id="toast" class="toast"></div>
+
+      <div class="controls">
+        <div class="cups" id="cups" aria-hidden="true">
+          <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span>
+        </div>
+        <button id="drinkBtn" class="drink-btn" aria-label="饮一杯">
+          <span class="drink-ring"></span>
+          <span id="drinkLabel" class="drink-label">饮</span>
+          <small id="drinkSub" class="drink-sub">第一杯</small>
+        </button>
+        <div class="hint"><kbd>空格</kbd> 饮下</div>
+      </div>
+
+      <div class="stage-rail" aria-hidden="true">
+        <span class="rail-line"></span>
+        <span id="railNum" class="rail-num">00</span>
+      </div>
+    </div>
+
+    <section id="titleScreen" class="title-screen">
+      <div class="title-scrim"></div>
+      <div class="title-inner">
+        <div class="title-eyebrow">李白 · 唐 · 天寶十一載</div>
+        <div class="title-row">
+          <h1 class="title-vertical">将进酒</h1>
+          <div class="title-side">
+            <span class="seal">醉</span>
+            <span class="title-sub">醉界</span>
+          </div>
+        </div>
+        <div class="title-rule"></div>
+        <p class="title-lead">一杯之后，天地开始倾斜。</p>
+        <button id="startBtn" class="start-btn">
+          <span class="start-char">饮</span>
+          <span class="start-copy"><b>入席</b><small>第一杯 · 夜宴初开</small></span>
+        </button>
+        <p class="title-hint">按 <kbd>空格</kbd> 入席 · 建议打开声音</p>
+      </div>
+      <div class="title-foot">
+        <span>实时生成 · 约六十秒</span>
+        <span class="foot-line"></span>
+        <span>JINJIU · 2026</span>
+      </div>
+    </section>
+
+    <section id="ending" class="ending">
+      <div class="ending-scrim"></div>
+      <div class="ending-inner">
+        <div class="ending-eyebrow">将进酒 · 醉界</div>
+        <div class="ending-row">
+          <h2 class="ending-vertical">与尔同销万古愁</h2>
+          <div class="ending-seal">空</div>
+        </div>
+        <div class="ending-rule"></div>
+        <p id="endingNote" class="ending-note"></p>
+        <div class="ending-stats">
+          <span id="endingCatches">金樽 0 / 3</span>
+          <span class="stat-dot">·</span>
+          <span id="endingTime">此夜 00:00</span>
+        </div>
+        <div class="ending-actions">
+          <button id="againBtn" class="ghost-btn">再饮一次</button>
+          <button id="endShareBtn" class="ghost-btn">分享此夜</button>
+        </div>
+      </div>
+      <div class="ending-foot">酒杯已空，山河仍在梦里。</div>
+    </section>
+
+    <div id="loader" class="loader">
+      <div class="loader-inner">
+        <div class="loader-mark">将进酒</div>
+        <div class="loader-sub">醉 界</div>
+        <div class="loader-cup"><i id="loadFill"></i></div>
+        <div class="loader-meta">
+          <span id="loadText">温酒中</span>
+          <span id="loadPct">0%</span>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
