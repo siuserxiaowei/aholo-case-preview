@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#071012" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23070b0c'/%3E%3Crect x='10' y='10' width='44' height='44' fill='none' stroke='%23b45f45' stroke-width='2'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='%23d3b477'%3E山%3C/text%3E%3C/svg%3E" />
+    <title>妖王 · 重制版 | 山门试炼</title>
+    <script type="module" crossorigin src="./assets/index-b0067960ee.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-C3-AH7o6.css">
+  </head>
+  <body>
+    <div id="scene" aria-hidden="true"></div>
+    <div class="cinema-bar top"></div>
+    <div class="cinema-bar bottom"></div>
+
+    <div id="title" class="screen title-screen">
+      <div class="title-veil"></div>
+      <div class="title-brand">
+        <span class="brand-seal">山</span>
+        <span class="brand-copy">AHOLO 3D PLAYGROUND<small>DEMO A · 2026</small></span>
+      </div>
+
+      <div class="title-main">
+        <div class="vertical-title" aria-label="妖王重制版">
+          <span class="v-char">妖</span>
+          <span class="v-char">王</span>
+          <span class="v-sub">重 制 版</span>
+          <span class="v-line"></span>
+        </div>
+
+        <div class="title-meta">
+          <div class="title-eyebrow"><span></span>山门废墟 · 第一回</div>
+          <h1>石甲未眠<br /><em>山门不闭</em></h1>
+          <p class="title-copy">山门封了九百年。石甲妖王仍在等一个能进门的人。<br />看清来势，闪身，弹开，再落刀。</p>
+
+          <div class="start-row">
+            <button id="startBtn" class="start-btn" disabled>
+              <span class="btn-label">招 魂 中</span>
+              <span class="btn-arrow">→</span>
+            </button>
+            <div class="load-wrap">
+              <div class="load-track"><i id="loadBar"></i></div>
+              <span id="loadText">载入妖王残卷 · 0%</span>
+            </div>
+          </div>
+
+          <div class="title-controls">
+            <div><kbd>W A S D</kbd><span>移动</span></div>
+            <div><kbd>SHIFT</kbd><span>疾跑</span></div>
+            <div><kbd>SPACE</kbd><span>闪避</span></div>
+            <div><kbd>J</kbd><span>轻击三段</span></div>
+            <div><kbd>K</kbd><span>重击</span></div>
+            <div><kbd>L</kbd><span>弹反</span></div>
+            <div><kbd>Q</kbd><span>定身</span></div>
+            <div><kbd>R</kbd><span>饮酒</span></div>
+            <div><kbd>TAB</kbd><span>锁定</span></div>
+          </div>
+          <div class="audio-hint">建议佩戴耳机 · 首次点击后开启声音 · 桌面临场感最佳</div>
+        </div>
+      </div>
+
+      <div class="title-footer">
+        <span>山门试炼</span>
+        <span class="footer-rule"></span>
+        <span>一念成劫 · 一刀开山</span>
+      </div>
+    </div>
+
+    <div id="hud" class="hud">
+      <div class="hud-brand">
+        <span class="hud-seal">山</span>
+        <div><small>山门废墟</small><b>试 炼</b></div>
+      </div>
+
+      <div class="boss-panel">
+        <div class="boss-head">
+          <span class="boss-kicker">山门镇守</span>
+          <b class="boss-name">石 甲 妖 王</b>
+          <span id="bossPhase" class="boss-phase">一 式</span>
+        </div>
+        <div class="bar boss-bar">
+          <i id="bossLag" class="bar-lag"></i>
+          <i id="bossFill" class="bar-fill"></i>
+          <div class="bar-caps"></div>
+        </div>
+        <div class="poise-track"><i id="poiseFill"></i></div>
+        <div class="boss-sub"><span id="bossSub">妖气未散</span><span id="bossHpText">480</span></div>
+      </div>
+
+      <div class="player-panel">
+        <div class="player-head"><b>行 者</b><span>齐天余脉</span><em id="hpText">120 / 120</em></div>
+        <div class="bar player-bar">
+          <i id="hpLag" class="bar-lag"></i>
+          <i id="hpFill" class="bar-fill"></i>
+          <div class="bar-caps"></div>
+        </div>
+        <div class="bar stamina-bar"><i id="stFill" class="bar-fill"></i></div>
+        <div class="status-row">
+          <div class="flasks" id="flasks" title="酒壶">
+            <span class="label">酒</span>
+            <i></i><i></i><i></i>
+          </div>
+          <div class="spell-chip" id="spellChip"><kbd>Q</kbd><span>定身</span><em id="spellCd">就绪</em></div>
+          <div class="parry-hint"><kbd>L</kbd><span>弹反</span></div>
+        </div>
+      </div>
+
+      <div id="targetChip" class="target-chip"><span class="lock-dot"></span>锁定 · 石甲妖王 <em id="targetDist"></em></div>
+      <div id="lockMarker" class="lock-marker">
+        <i class="lm tl"></i><i class="lm tr"></i><i class="lm bl"></i><i class="lm br"></i>
+        <span class="lm-dot"></span>
+        <span class="lm-dist" id="lockDist"></span>
+      </div>
+
+      <div id="combo" class="combo"><span id="comboNum">0</span><small>连 击</small></div>
+      <div id="message" class="message"></div>
+      <div id="damageLayer" class="damage-layer"></div>
+
+      <div class="hud-hint"><kbd>TAB</kbd> 切换锁定 <span></span> <kbd>ESC</kbd> 释放鼠标</div>
+
+      <div class="control-strip">
+        <span><kbd>W A S D</kbd>移动</span>
+        <span><kbd>SHIFT</kbd>疾跑</span>
+        <span><kbd>SPACE</kbd>闪避</span>
+        <span><kbd>J / 左键</kbd>轻击</span>
+        <span><kbd>K</kbd>重击</span>
+        <span><kbd>L</kbd>弹反</span>
+        <span><kbd>Q</kbd>定身</span>
+        <span><kbd>R</kbd>饮酒</span>
+      </div>
+
+      <div id="hurtVignette" class="hurt-vignette"></div>
+      <div id="whiteFlash" class="white-flash"></div>
+    </div>
+
+    <div id="result" class="screen result-screen hidden">
+      <div class="result-veil"></div>
+      <div class="result-inner">
+        <div class="result-kicker">山门试炼 · 终</div>
+        <div id="resultGlyph" class="result-glyph">胜</div>
+        <div class="result-copy">
+          <h2 id="resultTitle">妖王伏诛</h2>
+          <p id="resultDesc">山门已开。你听见风从很远的地方吹来。</p>
+        </div>
+        <div class="result-stats">
+          <div><span>用时</span><b id="statTime">00:00</b></div>
+          <div><span>命中</span><b id="statHits">0</b></div>
+          <div><span>弹反</span><b id="statParries">0</b></div>
+          <div><span>余酒</span><b id="statFlasks">0</b></div>
+        </div>
+        <button id="retryBtn" class="start-btn result-btn"><span class="btn-label">再 战 一 回</span><span class="btn-arrow">ENTER</span></button>
+        <div class="result-foot">看清来势，再落刀。</div>
+      </div>
+    </div>
+
+  </body>
+</html>
